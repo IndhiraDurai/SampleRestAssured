@@ -8,7 +8,7 @@ import io.cucumber.junit.CucumberOptions;
 @RunWith(Cucumber.class)
 @CucumberOptions(features = "src/test/resources/feature",
 				glue = "org.qa.stepdef", 
-				plugin ={"pretty","html:target/Destination","json:target/Destination"})
+				plugin ={"pretty","json:target/Destination"})
 public class RunnerClass {
 	
 }
