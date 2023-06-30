@@ -12,10 +12,9 @@
       <webdrivermanager.version>5.3.2</webdrivermanager.version>
       <junit.version>4.13.2</junit.version>
       <apache.common.version>2.4</apache.common.version>
-      <maven.compiler.plugin.version>3.10.1</maven.compiler.plugin.version>
-      <maven.surefire.plugin.version>3.0.0-M7</maven.surefire.plugin.version>
-      <maven.compiler.source.version>11</maven.compiler.source.version>
-      <maven.compiler.target.version>11</maven.compiler.target.version>
+     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+     <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
     <dependencies>
       <dependency>
@@ -64,26 +63,34 @@
       </dependency>
      </dependencies>
     <build>
-      <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>${maven.compiler.plugin.version}</version>
-          <configuration>
-            <source>${maven.compiler.source.version}</source>
-            <target>${maven.compiler.target.version}</target>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-surefire-plugin</artifactId>
-          <version>${maven.surefire.plugin.version}</version>
-          <configuration>
-            <includes>
-              <include>**/*Tests.java</include>
-            </includes>
-          </configuration>
-        </plugin>
-      </plugins>
+     <plugins>
+<plugin>
+   <groupId>net.masterthought</groupId>
+   <artifactId>maven-cucumber-reporting</artifactId>
+   <version>5.7.5</version>
+   <executions>
+     <execution>
+	<id>execution</id>
+	<phase>verify</phase>
+	<goals>
+	    <goal>generate</goal>
+	</goals>
+	<configuration>		
+	<projectName>restsample</projectName>    
+        <skip>false</skip>		
+        <outputDirectory>${project.build.directory}</outputDirectory>	     
+        <inputDirectory>${project.build.directory}</inputDirectory>
+        <jsonFiles>
+          <param>**/*.json</param>
+        </jsonFiles>	
+        <mergeFeaturesById>false</mergeFeaturesById>
+        <mergeFeaturesWithRetest>false</mergeFeaturesWithRetest>
+        <checkBuildResult>false</checkBuildResult>		    			  
+        </configuration>
+   </execution>
+  </executions>
+</plugin>
+  </plugins>
+  
      </build>
 </project>
